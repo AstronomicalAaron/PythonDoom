@@ -1,4 +1,5 @@
 import sys
+from raycaster import *
 from map import *
 from player import *
 
@@ -14,9 +15,11 @@ class Game:
     def new_game(self):
         self.map = Map(self)
         self.player = Player(self)
+        self.ray_caster = RayCaster(self)
 
     def update(self):  # Updates the screen and display current FPS in a window caption
         self.player.update()
+        self.ray_caster.update()
         pg.display.flip()  # update screen
         self.delta_time = self.clock.tick(FPS)  # updates the clock
         pg.display.set_caption(f'{self.clock.get_fps() :.1f}')  # display FPS in the window
