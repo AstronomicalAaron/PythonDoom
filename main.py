@@ -1,6 +1,6 @@
-import pygame as pg
 import sys
 from settings import *
+from map import *
 
 
 class Game:
@@ -8,9 +8,10 @@ class Game:
         pg.init()  # Create the pygame modules
         self.screen = pg.display.set_mode(RES)  # Create a screen using the resolution set in settings.py
         self.clock = pg.time.Clock()  # set the frame rate
+        self.new_game()
 
     def new_game(self):
-        pass
+        self.map = Map(self)
 
     def update(self):  # Updates the screen and display current FPS in a window caption
         pg.display.flip()  # update screen
@@ -19,6 +20,7 @@ class Game:
 
     def draw(self):
         self.screen.fill('black')  # for each clock cycle fill the screen black
+        self.map.draw()
 
     def check_events(self):
         for event in pg.event.get():  # loop through all of the events
