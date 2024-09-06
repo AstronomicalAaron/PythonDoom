@@ -52,8 +52,15 @@ class RayCaster:
             else:
                 depth = depth_horizontal
 
-            pg.draw.line(self.game.screen, 'yellow', (100 * ox, 100 * oy),
-                         (100 * ox + 100 * depth * cos_a, 100 * oy + 100 * depth * sin_a), 2)
+            depth *= math.cos(self.game.player.angle - ray_angle)
+
+            # pg.draw.line(self.game.screen, 'yellow', (100 * ox, 100 * oy),
+            #              (100 * ox + 100 * depth * cos_a, 100 * oy + 100 * depth * sin_a), 2)
+
+            proj_height = SCREEN_DIST / (depth + 0.0001)
+
+            color = [25 / (1 + depth ** 9 * 0.0002)] * 3
+            pg.draw.rect(self.game.screen, color, (ray * SCALE, HALF_HEIGHT - proj_height // 2, SCALE, proj_height))
 
             ray_angle += DELTA_ANGLE
 
