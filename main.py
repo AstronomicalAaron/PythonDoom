@@ -8,6 +8,7 @@ from renderer import *
 class Game:
     def __init__(self):
         pg.init()  # Create the pygame modules
+        pg.mouse.set_visible(False)
         self.screen = pg.display.set_mode(RES)  # Create a screen using the resolution set in settings.py
         self.clock = pg.time.Clock()  # set the frame rate
         self.delta_time = 1
@@ -27,7 +28,7 @@ class Game:
         pg.display.set_caption(f'{self.clock.get_fps() :.1f}')  # display FPS in the window
 
     def draw(self):
-        self.screen.fill('black')  # for each clock cycle fill the screen black
+        # self.screen.fill('black')  # for each clock cycle fill the screen black
         self.renderer.draw()
         # self.map.draw()
         # self.player.draw()
