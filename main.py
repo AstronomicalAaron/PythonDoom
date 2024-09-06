@@ -2,6 +2,7 @@ import sys
 from raycaster import *
 from map import *
 from player import *
+from renderer import *
 
 
 class Game:
@@ -15,6 +16,7 @@ class Game:
     def new_game(self):
         self.map = Map(self)
         self.player = Player(self)
+        self.renderer = Renderer(self)
         self.ray_caster = RayCaster(self)
 
     def update(self):  # Updates the screen and display current FPS in a window caption
@@ -26,6 +28,7 @@ class Game:
 
     def draw(self):
         self.screen.fill('black')  # for each clock cycle fill the screen black
+        self.renderer.draw()
         # self.map.draw()
         # self.player.draw()
 
